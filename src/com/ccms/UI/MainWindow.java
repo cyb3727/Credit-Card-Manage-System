@@ -9,9 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.FlowLayout;
 import java.awt.BorderLayout;
 import java.awt.Font;
-import java.util.Calendar;
 import java.util.Date;
-import java.awt.Dimension;
 
 public class MainWindow {
 
