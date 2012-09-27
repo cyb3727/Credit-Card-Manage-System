@@ -87,10 +87,10 @@ public class DBOperation {
 	 */
 	public static void Insert(User user) throws SQLException {
 		sql = "insert into User values(" + Actoma(user.getUserID()) + d
-				+ Actoma(user.getUserName()) + d + Actoma(user.getUserType().toString())
-				+ d + Actoma(user.getEmailAddress()) + d
-				+ Actoma(user.getStatus()) + d + Actoma(user.getBankID())
-				+ ");";
+				+ Actoma(user.getUserName()) + d
+				+ Actoma(user.getUserType().toString()) + d
+				+ Actoma(user.getEmailAddress()) + d + Actoma(user.getStatus())
+				+ d + Actoma(user.getBankID()) + ");";
 		System.out.println(sql);
 		if (!mConnection.isClosed()) {
 			statement.execute(sql);
@@ -232,15 +232,15 @@ public class DBOperation {
 
 	/**
 	 * 
-	 * @param costumer
+	 * @param account
 	 * @param money
 	 * @throws SQLException
 	 */
-	public static void PlusMoney(Costumer costumer, String money)
+	public static void PlusMoney(Account account, String money)
 			throws SQLException {
 		long Money = Long.parseLong(money);
-		sql = "select * from Account where Account.CostumerID="
-				+ costumer.getCostumerID() + ";";
+		sql = "select * from Account where Account.AccountID="
+				+ account.getAccountID() + ";";
 		if (!mConnection.isClosed()) {
 			mResultSet = statement.executeQuery(sql);
 
@@ -266,15 +266,15 @@ public class DBOperation {
 
 	/**
 	 * 
-	 * @param costumer
+	 * @param account
 	 * @param money
 	 * @throws SQLException
 	 */
-	public static void MinusMoney(Costumer costumer, String money)
+	public static void MinusMoney(Account account, String money)
 			throws SQLException {
 		long Money = Long.parseLong(money);
-		sql = "select * from Account where Account.CostumerID="
-				+ costumer.getCostumerID() + ";";
+		sql = "select * from Account where Account.AccountID="
+				+ account.getAccountID() + ";";
 		if (!mConnection.isClosed()) {
 			mResultSet = statement.executeQuery(sql);
 
@@ -301,4 +301,5 @@ public class DBOperation {
 			System.out.println("数据库未连接！");
 		}
 	}
+
 }

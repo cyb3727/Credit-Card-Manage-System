@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 
 import com.ccms.account.Costumer;
 import com.ccms.log.sys.User;
-import com.ccms.db.*;
+import com.ccms.db.DBOperation;
 import com.sun.jndi.url.corbaname.corbanameURLContextFactory;
 
 import javax.swing.GroupLayout;
@@ -45,6 +45,8 @@ public class AccountManage {
 	private JTextField textField_12;
 	private JTextField textField_13;
 	private final Action action = new SwingAction();
+	private final Action action_1 = new SwingAction_1();
+	private final Action action_2 = new SwingAction_2();
 
 	/**
 	 * Launch the application.
@@ -456,6 +458,7 @@ public class AccountManage {
 		textField_11.setColumns(10);
 
 		JButton button_1 = new JButton("存入");
+		button_1.setAction(action_1);
 		GroupLayout gl_panel_3 = new GroupLayout(panel_3);
 		gl_panel_3
 				.setHorizontalGroup(gl_panel_3
@@ -554,6 +557,7 @@ public class AccountManage {
 		textField_13.setColumns(10);
 
 		JButton button_2 = new JButton("取出");
+		button_2.setAction(action_2);
 		GroupLayout gl_panel_4 = new GroupLayout(panel_4);
 		gl_panel_4
 				.setHorizontalGroup(gl_panel_4
@@ -683,6 +687,31 @@ public class AccountManage {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+		}
+	}
+
+	private class SwingAction_1 extends AbstractAction {
+		public SwingAction_1() {
+			putValue(NAME, "存入");
+			putValue(SHORT_DESCRIPTION, "Some short description");
+		}
+
+		public void actionPerformed(ActionEvent e) {
+			String tmpString = textField_10.getText();
+			String money = textField_11.getText();
+
+		}
+	}
+
+	private class SwingAction_2 extends AbstractAction {
+		public SwingAction_2() {
+			putValue(NAME, "取出");
+			putValue(SHORT_DESCRIPTION, "Some short description");
+		}
+
+		public void actionPerformed(ActionEvent e) {
+			String ID = textField_12.getText();
+			String money = textField_13.getText();
 		}
 	}
 }

@@ -159,6 +159,9 @@ public class Login extends JDialog {
 				User user = new User();
 				user.setUserType(userType.Common);
 				user.setUserID(userName);
+
+				while (!com.ccms.db.DBOperation.Connnect())
+					;
 				MainWindow.main(user);
 			} else {
 
