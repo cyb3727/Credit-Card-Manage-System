@@ -8,14 +8,14 @@ import java.util.Date;
 
 /**
  *
- * @author hit-acm
+ * @author cyb
  */
 public class Account {
 
     private String AccountID;
     private Date CreateAccountTime;
     private String BankName;
-    private String CostumerAccount;
+    private String CostumerAccountID;
 
     /**
      * @return the AccountID
@@ -60,16 +60,16 @@ public class Account {
     }
 
     /**
-     * @return the CostumerAccount
+     * @return the CostumerAccountID
      */
     public String getCostumerAccount() {
-        return CostumerAccount;
+        return CostumerAccountID;
     }
 
     /**
-     * @param CostumerAccount the CostumerAccount to set
+     * @param CostumerAccountID the CostumerAccountID to set
      */
     public void setCostumerAccount(String CostumerAccount) {
-        this.CostumerAccount = CostumerAccount;
+        this.CostumerAccountID = CostumerAccount;
     }
 }

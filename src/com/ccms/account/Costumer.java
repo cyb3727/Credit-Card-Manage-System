@@ -15,7 +15,7 @@ public class Costumer {
     private String CostumerID;
     private String ID;
     private String FirstName;
-    private String SecondName;
+    private String LastName;
     private String Gender;
     private Date Birthday;
     private String PhoneNumber;
@@ -65,17 +65,17 @@ public class Costumer {
     }
 
     /**
-     * @return the SecondName
+     * @return the LastName
      */
     public String getSecondName() {
-        return SecondName;
+        return LastName;
     }
 
     /**
-     * @param SecondName the SecondName to set
+     * @param LastName the LastName to set
      */
     public void setSecondName(String SecondName) {
-        this.SecondName = SecondName;
+        this.LastName = SecondName;
     }
 
     /**

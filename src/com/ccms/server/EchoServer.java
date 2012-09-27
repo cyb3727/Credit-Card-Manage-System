@@ -2,9 +2,22 @@ package com.ccms.server;
 
 import java.io.*;
 import java.net.*;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.Scanner;
 
-public class EchoServer {
+import com.ccms.UI.CCManage;
+
+public class EchoServer  {
+
+	/**
+	 * @throws RemoteException
+	 */
+	protected EchoServer() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+		
+	}
 
 	/**
 	 * @param args

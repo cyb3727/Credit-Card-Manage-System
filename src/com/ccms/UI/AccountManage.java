@@ -4,7 +4,11 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
+import com.ccms.account.Costumer;
 import com.ccms.log.sys.User;
+import com.ccms.db.*;
+import com.sun.jndi.url.corbaname.corbanameURLContextFactory;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JPanel;
@@ -13,8 +17,15 @@ import javax.swing.JLayeredPane;
 import java.awt.Dimension;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.text.DefaultEditorKit.InsertBreakAction;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.AbstractAction;
+import java.awt.event.ActionEvent;
+import javax.swing.Action;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.Date;
 
 public class AccountManage {
 
@@ -33,6 +44,7 @@ public class AccountManage {
 	private JTextField textField_11;
 	private JTextField textField_12;
 	private JTextField textField_13;
+	private final Action action = new SwingAction();
 
 	/**
 	 * Launch the application.
@@ -145,6 +157,11 @@ public class AccountManage {
 		textField_9.setColumns(10);
 
 		JButton button = new JButton("开户");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		button.setAction(action);
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1
 				.setHorizontalGroup(gl_panel_1
@@ -626,5 +643,46 @@ public class AccountManage {
 		tabbedPane.addTab("结算", null, panel_8, null);
 		panel.setLayout(gl_panel);
 		frame.getContentPane().setLayout(groupLayout);
+	}
+
+	private class SwingAction extends AbstractAction {
+		public SwingAction() {
+			putValue(NAME, "开户");
+			putValue(SHORT_DESCRIPTION, "Some short description");
+		}
+
+		public void actionPerformed(ActionEvent e) {
+			Costumer costumer = new Costumer();
+			// String CostumerID;
+			String ID;
+			String FirstName;
+			String LastName;
+			String Gender;
+			Date Birthday;
+			String PhoneNumber;
+			String Address;
+			String EmailAddress;
+
+			ID = textField_2.getText();
+			LastName = textField.getText();
+			FirstName = textField_1.getText();
+			PhoneNumber = textField_6.getText();
+			Address = textField_5.getText();
+			EmailAddress = textField_3.getText() + "@" + textField_4.getText();
+
+			costumer.setID(ID);
+			costumer.setFirstName(FirstName);
+			costumer.setSecondName(LastName);
+			costumer.setPhoneNumber(PhoneNumber);
+			costumer.setAddress(Address);
+			costumer.setEmailAddress(EmailAddress);
+
+			try {
+				com.ccms.db.DBOperation.Insert(costumer);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
 	}
 }

@@ -157,7 +157,7 @@ public class Login extends JDialog {
 			if (passwordCorrect) {
 				dispose();
 				User user = new User();
-				user.setType(userType.Common);
+				user.setUserType(userType.Common);
 				user.setUserID(userName);
 				MainWindow.main(user);
 			} else {

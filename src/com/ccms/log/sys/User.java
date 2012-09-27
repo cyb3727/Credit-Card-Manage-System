@@ -103,14 +103,14 @@ public class User {
 	/**
 	 * @return the type
 	 */
-	public userType getType() {
+	public userType getUserType() {
 		return type;
 	}
 
 	/**
 	 * @param type the type to set
 	 */
-	public void setType(userType type) {
+	public void setUserType(userType type) {
 		this.type = type;
 	}
 
