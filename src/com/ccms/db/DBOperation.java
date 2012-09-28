@@ -511,3 +511,46 @@ public class DBOperation {
         return null;
     }
 }
+
+
+/**
+ *
+ * @author hit-acm
+ */
+public class NumString {
+
+    private static char c[] = new char[21];
+
+    private static void init() {
+        for (int i = 0; i < 20; i++) {
+            c[i] = '0';
+        }
+    }
+
+    public static String ZERO() {
+        init();
+        return String.copyValueOf(c, 0, 20);
+    }
+
+    public static String MAXN() {
+        return "99999999999999999999";
+    }
+
+    public static String Inc(String s) {
+        init();
+        c = s.toCharArray();
+        int pre = 1;
+        for (int i = 19; i >= 0; i--) {
+            int now = c[i] - '0' + pre;
+            if (now > 9) {
+                now -= 10;
+                pre = 1;
+            } else {
+                pre = 0;
+            }
+            c[i] = (char) ('0' + now);
+        }
+        return String.copyValueOf(c, 0, 20);
+    }
+}
+
