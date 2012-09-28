@@ -510,4 +510,134 @@ public class DBOperation {
         }
         return null;
     }
+      /**
+     * 注销信用卡
+     * @param CreditCardID
+     * @throws SQLException
+     */
+    public static void Pincard(String CreditCardID) throws SQLException {
+        Connnect();
+        sql = "delete from CreditCard where CreditCard.CreditCardID=" + Actoma(CreditCardID) + ";";
+        System.out.println(sql);
+        if (!mConnection.isClosed()) {
+            statement.execute(sql);
+            System.out.println("注销信用卡成功！");
+        } else {
+            System.out.println("数据库未连接！");
+        }
+    }
+
+    /**
+     * 注销账户
+     * @param AccountID
+     * @throws SQLException
+     */
+    public static void Pinaccount(String AccountID) throws SQLException {
+        Connnect();
+        if (!mConnection.isClosed()) {
+            sql = "delete from Account where Account.AccountID=" + Actoma(AccountID) + ";";
+            System.out.println(sql);
+            sql = "delete from CreditCard where CreditCard.AccountID=" + Actoma(AccountID) + ";";
+            System.out.println(sql);
+            statement.execute(sql);
+            System.out.println("注销账户成功！");
+        } else {
+            System.out.println("数据库未连接！");
+        }
+    }
+
+    /**
+     * 注销user用户
+     * @param UserID
+     * @throws SQLException
+     */
+    public static void Pinuser(String UserID) throws SQLException {
+        Connnect();
+        if (!mConnection.isClosed()) {
+            sql = "delete from User where User.UserID=" + Actoma(UserID) + ";";
+            System.out.println(sql);
+            statement.execute(sql);
+            System.out.println("用户注销成功！");
+        } else {
+            System.out.println("数据库未连接！");
+        }
+    }
+
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
+    public static String GenerateCreditCardID() throws SQLException {
+        Connnect();
+        String one = NumString.ZERO();
+        while (one.compareTo(NumString.MAXN()) < 0) {
+            sql = "select count(*) from CreditCard where CreditCardID=" + Actoma(one) + ";";
+            if (!mConnection.isClosed()) {
+                mResultSet = statement.executeQuery(sql);
+                if (mResultSet.next()) {
+                    int res = mResultSet.getInt(1);
+                    if (res == 0) {
+                        return one;
+                    }
+                }
+            } else {
+                System.out.println("数据库未连接！");
+            }
+            one = NumString.Inc(one);
+        }
+        return null;
+    }
+
+    /**
+     * 生成CostumerID
+     * @return
+     * @throws SQLException
+     */
+    public static String GenerateCostumerID() throws SQLException {
+        Connnect();
+        String one = NumString.ZERO();
+        while (one.compareTo(NumString.MAXN()) < 0) {
+            sql = "select count(*) from Costumer where CostumerID=" + Actoma(one) + ";";
+            if (!mConnection.isClosed()) {
+                mResultSet = statement.executeQuery(sql);
+                if (mResultSet.next()) {
+                    int res = mResultSet.getInt(1);
+                    if (res == 0) {
+                        return one;
+                    }
+                }
+            } else {
+                System.out.println("数据库未连接！");
+            }
+            one = NumString.Inc(one);
+        }
+        return null;
+    }
+
+    /**
+     * 生成新的UserID
+     * @return
+     * @throws SQLException
+     */
+    public static String GenerateUserID() throws SQLException {
+        Connnect();
+        String one = NumString.ZERO();
+        while (one.compareTo(NumString.MAXN()) < 0) {
+            sql = "select count(*) from User where UserID=" + Actoma(one) + ";";
+            if (!mConnection.isClosed()) {
+                mResultSet = statement.executeQuery(sql);
+                if (mResultSet.next()) {
+                    int res = mResultSet.getInt(1);
+                    if (res == 0) {
+                        return one;
+                    }
+                }
+            } else {
+                System.out.println("数据库未连接！");
+            }
+            one = NumString.Inc(one);
+        }
+        return null;
+    }
 }
